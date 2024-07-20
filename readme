@@ -1,4 +1,5 @@
-after_insert and creating two doc at same time 
+after_insert and creating two doc at same time :
+
    after_insert(self): This method is a hook that gets called automatically after a new Lead document is inserted into the database.
    frappe.new_doc("deal"): This creates a new instance of the Deal doctype.
    x.deal_name = self.name1: This sets the deal_name field of the new Deal document to the value of name1 from the Lead document.
@@ -17,5 +18,6 @@ on_trash method:
     delete(y[0]["name"]): This calls the delete function with the name of the Deal document.
 
 delete:
+
     delete(z): This is a standalone function that deletes a Deal document.
     frappe.delete_doc("deal", z): This deletes the Deal document with the name z from the database.
