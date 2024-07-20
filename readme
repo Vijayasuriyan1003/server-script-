@@ -1,0 +1,21 @@
+after_insert and creating two doc at same time 
+   after_insert(self): This method is a hook that gets called automatically after a new Lead document is inserted into the database.
+   frappe.new_doc("deal"): This creates a new instance of the Deal doctype.
+   x.deal_name = self.name1: This sets the deal_name field of the new Deal document to the value of name1 from the Lead document.
+   x.status = self.status: This sets the status field of the new Deal document to the value of status from the Lead document.
+   x.lead = self.name: This sets the lead field of the new Deal document to the name of the Lead document.
+   x.lead_owner = self.oowner: This sets the lead_owner field of the new Deal document to the value of oowner from the Lead document.
+   x.save(): This saves the new Deal document to the database.
+
+on_trash method:
+
+    on_trash(self): This method is a hook that gets called automatically before a Lead document is deleted.
+    frappe.get_list("deal", filters={"lead": self.name}): This retrieves a list of Deal documents that are linked to the Lead document being deleted.
+    frappe.get_doc("deal", y[0]): This retrieves the first Deal document from the list.
+    x.lead = None: This sets the lead field of the Deal document to None.
+    x.save(): This saves the changes to the Deal document.
+    delete(y[0]["name"]): This calls the delete function with the name of the Deal document.
+
+delete:
+    delete(z): This is a standalone function that deletes a Deal document.
+    frappe.delete_doc("deal", z): This deletes the Deal document with the name z from the database.
